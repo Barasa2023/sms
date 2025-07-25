@@ -5,3 +5,7 @@ from .models import ClassRoom, Subject
 @admin.register(ClassRoom)
 class ClassRoomAdmin(admin.ModelAdmin):
     list_display = ['name', 'teacher', 'capacity']
+
+@admin.register(Subject)
+class SubjectAdmin(admin.ModelAdmin):
+    list_display = ['sub_name', 'teacher', 'grade']
