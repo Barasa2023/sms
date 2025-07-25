@@ -4,9 +4,14 @@ from staff.models import Teacher
 # Create your models here.
 class ClassRoom(models.Model):
     '''Manage Classes'''
+    streams = [
+        ('N', 'North'),
+        ('S', 'South'),
+        ('E', 'East')
+    ]
     capacity = models.IntegerField()
     class_teacher = models.OneToOneField(Teacher, on_delete=models.CASCADE)
-    stream = models.CharField(max_length=50)
+    stream = models.CharField(max_length=50, choices=streams, default='N')
     name = models.CharField(max_length=50)
 
     def __str__(self):

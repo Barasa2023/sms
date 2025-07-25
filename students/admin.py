@@ -5,4 +5,8 @@ from .models import Student
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ['adm_no', 'grade']
+    """Admin interface for Student model."""
+    # Display fields in the admin list view
+    first_name = 'user__first_name'
+    last_name = 'user__last_name'
+    list_display = ['adm_no', 'grade', first_name, last_name]
