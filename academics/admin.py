@@ -4,7 +4,7 @@ from .models import ClassRoom, Subject
 # Register your models here.
 @admin.register(ClassRoom)
 class ClassRoomAdmin(admin.ModelAdmin):
-    list_display = ['name', 'teacher', 'capacity']
+    list_display = ['name', 'class_teacher', 'capacity']
 
 @admin.register(Subject)
 class SubjectAdmin(admin.ModelAdmin):

@@ -4,7 +4,7 @@ from staff.models import Teacher
 # Create your models here.
 class ClassRoom(models.Model):
     '''Manage Classes'''
-    capacity = models.IntegerChoices(max = 60)
+    capacity = models.IntegerField()
     class_teacher = models.OneToOneField(Teacher, on_delete=models.CASCADE)
     stream = models.CharField(max_length=50)
     name = models.CharField(max_length=50)

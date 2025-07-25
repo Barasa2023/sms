@@ -9,8 +9,11 @@
     <ul>
         {{% for student in students %}}
         <li>{{ student.name }}  {{ student.adm_no }}</li>
-    </ul>
         {{% empty %}}
         <li>No students found.</li>
+
+        {{% endfor %}}
+    </ul>
+
 </body>
 </html>
