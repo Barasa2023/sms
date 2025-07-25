@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes</title>
+</head>
+<body>
+    {% for classroom in classrooms %}
+        <h2>{{ classroom.name }}</h2>
+        <p>Class Teacher: {{ classroom.class_teacher }}</p>
+        <p>Capacity: {{ classroom.capacity }}</p>
+        <p>Stream: {{ classroom.stream }}</p>
+    {% endfor %}
+</body>
+</html>
