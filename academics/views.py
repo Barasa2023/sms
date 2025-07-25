@@ -3,6 +3,9 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .forms import ClassRoomForm, SubjectForm
 from .models import ClassRoom, Subject
 
+def IndexView(request):
+    return render(request, 'academics/index.html')
+
 class ClassRoomListView(ListView):
     '''List all classrooms'''
     model = ClassRoom
