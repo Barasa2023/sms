@@ -18,6 +18,7 @@ class Fee(models.Model):
         return self.fee_type
 
 class Payment(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
     fee = models.ForeignKey(Fee, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     payment_date = models.DateField(auto_now_add=True)
