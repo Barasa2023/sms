@@ -5,43 +5,53 @@
 <div class="container mt-5">
   <div class="row g-4">
     <!-- Total Students -->
-    <div class="col-md-6 col-lg-3">
-      <div class="card shadow border-0 text-white bg-primary">
-        <div class="card-body">
-          <h6 class="card-title fw-semibold">👨‍🎓 Total Students</h6>
-          <h3 class="card-text">{{ total_students }}</h3>
+
+        <div class="col-md-3">
+      <a href="{% url 'students:student_list' %}" class="text-decoration-none">
+        <div class="card text-white bg-primary shadow h-100">
+          <div class="card-body">
+            <h5 class="card-title">Total Students</h5>
+            <p class="card-text display-6">{{ total_students }}</p>
+          </div>
         </div>
-      </div>
+      </a>
     </div>
 
     <!-- Total Fee Collected -->
-    <div class="col-md-6 col-lg-3">
-      <div class="card shadow border-0 text-white bg-success">
-        <div class="card-body">
-          <h6 class="card-title fw-semibold">💰 Fee Collected</h6>
-          <h3 class="card-text">Ksh {{ total_fee_collected|floatformat:0 }}</h3>
+
+        <div class="col-md-3">
+      <a href="{% url 'finance:fee_payments' %}" class="text-decoration-none">
+        <div class="card text-white bg-success shadow h-100">
+          <div class="card-body">
+            <h5 class="card-title">Fee Collected</h5>
+            <p class="card-text display-6">Ksh {{ total_fee_collected | floatformat:0 }}</p>
+          </div>
         </div>
-      </div>
+      </a>
     </div>
 
     <!-- Total Fee Pending -->
-    <div class="col-md-6 col-lg-3">
-      <div class="card shadow border-0 text-white bg-danger">
-        <div class="card-body">
-          <h6 class="card-title fw-semibold">🧾 Fee Pending</h6>
-          <h3 class="card-text">Ksh {{ total_fee_pending|floatformat:0 }}</h3>
+         <div class="col-md-3">
+      <a href="{% url 'finance:fee_payments' %}" class="text-decoration-none">
+        <div class="card text-white bg-danger shadow h-100">
+          <div class="card-body">
+            <h5 class="card-title">Fee Pending</h5>
+            <p class="card-text display-6">Ksh {{ total_fee_pending | floatformat:0 }}</p>
+          </div>
         </div>
-      </div>
+      </a>
     </div>
 
     <!-- Total Classes -->
-    <div class="col-md-6 col-lg-3">
-      <div class="card shadow border-0 text-white bg-info">
-        <div class="card-body">
-          <h6 class="card-title fw-semibold">🏫 Total Classes</h6>
-          <h3 class="card-text">{{ total_classes }}</h3>
+    <div class="col-md-3">
+      <a href="{% url 'academics:classroom_list' %}" class="text-decoration-none">
+        <div class="card text-white bg-info shadow h-100">
+          <div class="card-body">
+            <h5 class="card-title">Total Classes</h5>
+            <p class="card-text display-6">{{ total_classes }}</p>
+          </div>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </div>
