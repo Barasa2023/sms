@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from finance.models import Payment, FeeType
 from students.models import Student
-from .forms import FeePaymentForm
+from .forms import FeePaymentForm, FeeTypeForm, FeeUpdateForm
 
 #from finance.models import Fee
 from finance.models import FeeType
@@ -69,7 +69,7 @@ class FeePaymentListView(ListView):
 class FeeUpdateView(UpdateView):
     '''Update an existing fee category'''
     model = FeeType
-    form_class = FeeTypeForm
+    form_class = FeeUpdateForm
     template_name = 'finance/edit_fee.html'
     success_url = '/payments/'
 
