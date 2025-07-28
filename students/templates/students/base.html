@@ -22,10 +22,10 @@
           <a class="nav-link" href="{% url 'students:student_list' %}">Students</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Finance</a>
+          <a class="nav-link" href="{% url 'finance:fee_list' %}">Finance</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Dashboard</a>
+          <a class="nav-link" href="{% url 'students:index' %}">Dashboard</a>
         </li>
         <!-- 🔐 Auth links if needed -->
         {% if user.is_authenticated %}

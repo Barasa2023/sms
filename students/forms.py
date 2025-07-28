@@ -8,9 +8,9 @@ User = get_user_model()
 
 class StudentCreationForm(ModelForm):
     '''Student creation form'''
-    first_name = forms.CharField(max_length=50)
-    last_name = forms.CharField(max_length=50)
-    email = forms.EmailField(required=True)
+    # first_name = forms.CharField(max_length=50)
+    # last_name = forms.CharField(max_length=50)
+    # email = forms.EmailField(required=True)
     fee_type = forms.ModelMultipleChoiceField(
         queryset = FeeType.objects.all(),
         widget=forms.CheckboxSelectMultiple,
@@ -26,12 +26,17 @@ class StudentCreationForm(ModelForm):
     class Meta:
         model = Student
         fields = ['first_name', 'last_name', 'email', 'adm_no', 'grade', 'fee_type']
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}),
+            'last_name': forms.TextInput(attrs = {'class': 'form-control', 'placeholder': 'Last Name'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
+            'adm_no': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Admission Number'}),
+            'grade': forms.Select(attrs={'class': 'form-select'}),
+            'fee_type': forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input'}),
+        }
 
 class StudentEditForm(ModelForm):
     '''Student edit form'''
-    #first_name = forms.CharField(max_length=50)
-    #last_name = forms.CharField(max_length=50)
-    #email = forms.EmailField(required=True)
     fee_type = forms.ModelMultipleChoiceField(
         queryset=FeeType.objects.all(),
         widget=forms.CheckboxSelectMultiple,
