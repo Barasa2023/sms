@@ -8,6 +8,10 @@ from finance.models import FeeType
 User = get_user_model()
 
 class Student(models.Model):
+    """Model representing a student."""
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    email = models.EmailField(unique=True)    
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     adm_no = models.CharField(max_length=100)
     grade = models.ForeignKey(ClassRoom, on_delete=models.CASCADE)

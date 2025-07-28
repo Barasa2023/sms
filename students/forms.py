@@ -30,8 +30,8 @@ class StudentCreationForm(ModelForm):
 class StudentEditForm(ModelForm):
     '''Student edit form'''
     #first_name = forms.CharField(max_length=50)
-    last_name = forms.CharField(max_length=50)
-    email = forms.EmailField(required=True)
+    #last_name = forms.CharField(max_length=50)
+    #email = forms.EmailField(required=True)
     fee_type = forms.ModelMultipleChoiceField(
         queryset=FeeType.objects.all(),
         widget=forms.CheckboxSelectMultiple,
