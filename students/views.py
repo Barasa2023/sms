@@ -51,6 +51,7 @@ class StudentCreate(CreateView):
 
 class StudentUpdate(UpdateView):
     model = Student
-    form_class = StudentCreationForm
+    form_class = StudentEditForm
+    pk_url_kwarg = 'pk'
     template_name = 'students/student_edit.html'
     success_url = '/students/'
