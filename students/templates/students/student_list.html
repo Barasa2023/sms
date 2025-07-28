@@ -1,5 +1,5 @@
 <!-- templates/student/student_list.html -->
-{% extends "base.html" %}
+{% extends "./base.html" %}
 {% block content %}
 <div class="container mt-4">
     <h2 class="mb-4">Student List</h2>
@@ -9,7 +9,6 @@
             <div class="card shadow rounded-3">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
-                        <!-- <img src="{% static 'images/avatar.png' %}" class="rounded-circle me-3" width="60" height="60" alt="Student Avatar"> -->
                         <div>
                             <h5 class="card-title mb-0">{{ student.user.first_name }}  {{student.user.last_name}}</h5>
                             <small class="text-muted">Admission No: {{ student.adm_no }}</small>
@@ -19,7 +18,7 @@
                     <p class="mb-1"><strong>Gender:</strong> {{ student.gender }}</p>
                     <p class="mb-1"><strong>Class:</strong> {{ student.class_name }}</p>
                     <p class="mb-1"><strong>Section:</strong> {{ student.section }}</p>
-                    <a href="{% url 'student_detail' student.pk %}" class="btn btn-primary mt-2">View Profile</a>
+                
                 </div>
             </div>
         </div>
