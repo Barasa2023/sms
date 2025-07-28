@@ -1,31 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fees</title>
-</head>
-<body>
-    <h1>Fees</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Amount</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for fee in fees %}
-            <tr>
-                <td>{{ fee.name }}</td>
-                <td>{{ fee.description }}</td>
-                <td>{{ fee.amount }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+{% extends "students/base.html" %}
+{% load static %}
 
-    <a href="{% url 'finance:add_fee' %}">Add New Fee</a>
-</body>
-</html>
+{% block content %}
+<div class="container py-4">
+
+  <!-- Create Button -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Fee Categories</h2>
+    <a href="{% url 'finance:fee_add' %}" class="btn btn-primary">
+      <i class="bi bi-plus-circle me-1">Add Fee Category</i> 
+    </a>
+  </div>
+
+  <!-- Fee Type Cards -->
+  <div class="row g-4">
+    {% for fee in fee_types %}
+    <div class="col-md-6 col-lg-4">
+      <div class="card border-0 shadow h-100">
+        <div class="card-body d-flex flex-column">
+          <!-- Icon and Title -->
+          <div class="d-flex align-items-center mb-2">
+            <i class="bi bi-cash-coin fs-3 text-success me-2"></i>
+            <h5 class="card-title mb-0 text-primary">{{ fee.name }}</h5>
+          </div>
+
+          <!-- Description -->
+          <p class="card-text text-muted">{{ fee.description }}</p>
+
+          <!-- Amount and Actions -->
+          <div class="mt-auto d-flex justify-content-between align-items-center">
+            <span class="badge bg-info text-dark">Ksh {{ fee.amount }}</span>
+            <div>
+              <a href="{% url 'fee_type_update' fee.id %}" class="btn btn-sm btn-outline-primary me-1">
+                <i class="bi bi-pencil-square"></i>
+              </a>
+              <a href="{% url 'fee_type_delete' fee.id %}" class="btn btn-sm btn-outline-danger">
+                <i class="bi bi-trash"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+      <div class="alert alert-info text-center">
+        No fee types defined yet.
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
