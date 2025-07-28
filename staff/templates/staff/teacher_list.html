@@ -1,18 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher List</title>
-</head>
-<body>
-    <h1>Teacher List</h1>
-    <ul>
+<!-- templates/student/student_list.html -->
+{% extends "students/base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Teacher List</h2>
+    <div class="row">
         {% for teacher in teachers %}
-            <li>{{ teacher.user.first_name }}  {{ teacher.user.last_name }} - {{ teacher.Id_no }}</li>
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow rounded-3">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <h5 class="card-title mb-0">{{ teacher.user.first_name }}  {{teacher.user.last_name}}</h5>
+                            <small class="text-muted">TSC No: {{ teacher.Id_no }}</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <p class="mb-1"><strong>Gender:</strong> {{ student.gender }}</p>
+                    <p class="mb-1"><strong>Class:</strong> {{ student.class_name }}</p>
+                    <p class="mb-1"><strong>Section:</strong> {{ student.section }}</p>
+                
+                </div>
+            </div>
+        </div>
         {% empty %}
-            <li>No teachers found.</li>
+        <p>No students found.</p>
         {% endfor %}
-    </ul>
-</body>
-</html>
+    </div>
+</div>
+{% endblock %}
