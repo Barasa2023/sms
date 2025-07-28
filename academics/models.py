@@ -14,6 +14,11 @@ class ClassRoom(models.Model):
     stream = models.CharField(max_length=50, choices=streams, default='N')
     name = models.CharField(max_length=50)
 
+
+    def total_students(self):
+        """Calculate total students in the classroom."""
+        return self.student_set.count()
+
     def __str__(self):
         return self.name
 
