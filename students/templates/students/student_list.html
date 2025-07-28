@@ -7,18 +7,18 @@
         {% for student in students %}
         <div class="col-md-6 col-lg-4 mb-4">
             <div class="card shadow rounded-3">
-                <div class="card-body">
+                <div class="card-body bg-light">
                     <div class="d-flex align-items-center">
                         <div>
                             <h5 class="card-title mb-0">{{ student.user.first_name }}  {{student.user.last_name}}</h5>
-                            <small class="text-muted">Admission No: {{ student.adm_no }}</small>
+                            <small class="text-muted">Admission No: {{ student.adm_no }} Class: {{ student.grade }}    </small>
                         </div>
                     </div>
                     <hr>
-                    <p class="mb-1"><strong>Gender:</strong> {{ student.gender }}</p>
-                    <p class="mb-1"><strong>Class:</strong> {{ student.class_name }}</p>
-                    <p class="mb-1"><strong>Section:</strong> {{ student.section }}</p>
-                
+                    <p class="mb-1">Total Fee : {{ student.total_fees }}</p>
+                    <p class="mb-1">Fee Paid : {{ student.total_fees_paid }}</p>
+                    <p class="mb-1">Balance : {{ student.balance }}</p>
+                    <a href="{% url 'students:edit_student' student.pk %}" class="btn btn-primary">Edit</a>
                 </div>
             </div>
         </div>
