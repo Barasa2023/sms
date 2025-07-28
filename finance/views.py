@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView
-from finance.models import Payment
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from finance.models import Payment, FeeType
 from students.models import Student
 from .forms import FeePaymentForm
 
@@ -65,3 +65,22 @@ class FeePaymentListView(ListView):
 
     def get_queryset(self):
         return Payment.objects.select_related('student').all()
+
+class FeeUpdateView(UpdateView):
+    '''Update an existing fee category'''
+    model = FeeType
+    form_class = FeeTypeForm
+    template_name = 'finance/edit_fee.html'
+    success_url = '/payments/'
+
+    def get_object(self, queryset=None):
+        return Payment.objects.get(pk=self.kwargs['pk'])
+    
+class FeeDeleteView(DeleteView):
+    '''Delete an existing fee category'''
+    model = FeeType
+    template_name = 'finance/delete_fee.html'
+    success_url = '/payments/'
+
+    def get_object(self, queryset=None):
+        return FeeType.objects.get(pk=self.kwargs['pk'])
