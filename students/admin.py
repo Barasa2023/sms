@@ -9,4 +9,4 @@ class StudentAdmin(admin.ModelAdmin):
     # Display fields in the admin list view
     first_name = 'user__first_name'
     last_name = 'user__last_name'
-    list_display = ['adm_no', 'grade', first_name, last_name, 'total_fees', 'balance']
+    list_display = ['adm_no', 'grade', first_name, last_name, 'total_fees', 'total_fees_paid', 'balance']

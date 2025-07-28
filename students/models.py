@@ -12,9 +12,20 @@ class Student(models.Model):
     adm_no = models.CharField(max_length=100)
     grade = models.ForeignKey(ClassRoom, on_delete=models.CASCADE)
     fee_type = models.ManyToManyField('finance.FeeType', blank=True)
-    total_fees = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
-    balance = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
 
+    def total_fees(self):
+        """Calculate total fees for the student."""
+        return sum(fee.amount for fee in self.fee_type.all())
+
+    def total_fees_paid(self):
+        """Calculate total fees paid by the student."""
+        return sum(payment.amount for payment in self.payment_set.all())
+    
+    def balance(self):
+        """Calculate the balance of fees for the student."""
+        total_paid = self.total_fees_paid()
+        total_fees = sum(fee.amount for fee in self.fee_type.all())
+        return total_fees - total_paid
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
