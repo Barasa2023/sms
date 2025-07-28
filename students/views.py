@@ -7,6 +7,11 @@ from .forms import StudentCreationForm, StudentEditForm
 User = get_user_model()
 
 # Create your views here.
+
+def indexview(request):
+    '''Index view for the students app'''
+    return render(request, 'students/index.html')
+
 class StudentList(ListView):
     '''List all students'''
     model = Student
