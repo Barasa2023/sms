@@ -41,3 +41,11 @@ class StudentEditForm(ModelForm):
     class Meta:
         model = Student
         fields = ['first_name', 'last_name', 'email', 'adm_no', 'grade', 'fee_type']
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}),
+            'last_name': forms.TextInput(attrs = {'class': 'form-control', 'placeholder': 'Last Name'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
+            'adm_no': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Admission Number'}),
+            'grade': forms.Select(attrs={'class': 'form-select'}),
+            'fee_type': forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input'}),
+        }
