@@ -48,3 +48,9 @@ class StudentCreate(CreateView):
         student.save()
 
         return super().form_valid(form)
+
+class StudentUpdate(UpdateView):
+    model = Student
+    form_class = StudentCreationForm
+    template_name = 'students/student_edit.html'
+    success_url = '/students/'
