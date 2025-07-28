@@ -10,7 +10,7 @@
         {% for student in students %}
         <li>{{ student.user.first_name }} {{student.user.last_name}} - {{ student.adm_no }} - 
             Total Fees: {{ student.total_fees }} -
-            Total Fees Paid: {{ student.total_fees_paid }} - Balance: {{ student.balance }}</li>
+            Total Fees Paid: {{ student.total_fees_paid }} - Balance: {{ student.balance }} <a href="{% url 'students:edit_student' student.pk %}">Edit</a></li>
         {% empty %}
         <p>No students found.</p>
 
