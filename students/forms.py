@@ -15,7 +15,7 @@ class StudentCreationForm(ModelForm):
         queryset = FeeType.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=False,
-        label="Fee Types"
+        label="Fee Categories"
     )
 
     def clean_email(self):

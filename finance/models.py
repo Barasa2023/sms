@@ -1,5 +1,5 @@
 from django.db import models
-from students.models import Student
+#from students.models import Student
 
 class FeeType(models.Model):
     name = models.CharField(max_length=100)
@@ -9,8 +9,8 @@ class FeeType(models.Model):
     def __str__(self):
         return self.name
 
-class Fee(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+class StudentFee(models.Model):
+    student = models.ForeignKey('students.Student', on_delete=models.CASCADE)
     fee_type = models.ForeignKey(FeeType, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
 
@@ -18,8 +18,8 @@ class Fee(models.Model):
         return self.fee_type
 
 class Payment(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE, null=True, blank=True)
-    fee = models.ForeignKey(Fee, on_delete=models.CASCADE)
+    student = models.ForeignKey('students.Student', on_delete=models.CASCADE, null=True, blank=True)
+    fee = models.ForeignKey(FeeType, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     payment_date = models.DateField(auto_now_add=True)
     payment_method = models.CharField(max_length=50)

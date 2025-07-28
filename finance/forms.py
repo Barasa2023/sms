@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from finance.models import FeeType, Fee
+from finance.models import FeeType
 from students.models import Student
 from finance.models import Payment
 
@@ -13,4 +13,4 @@ class FeeTypeForm(ModelForm):
 class FeePaymentForm(ModelForm):
     class Meta:
         model = Payment
-        fields = ['student', 'fee', 'amount', 'payment_method', 'receipt_number']
+        fields = ['student', 'amount', 'fee', 'payment_method', 'receipt_number']
