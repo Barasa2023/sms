@@ -1,16 +1,29 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth import get_user_model
+from django.db.models import Sum
 from .models import Student
 from .forms import StudentCreationForm, StudentEditForm
+from finance.models import Payment
+from academics.models import ClassRoom
 
 User = get_user_model()
 
 # Create your views here.
 
 def indexview(request):
-    '''Index view for the students app'''
-    return render(request, 'students/index.html')
+    total_students = Student.objects.count()
+    total_fee_collected = Payment.objects.aggregate(total=Sum('amount'))['total'] or 0
+    total_fee_pending = sum([s.balance() for s in Student.objects.all()])
+    total_classes = ClassRoom.objects.count()
+
+    context = {
+        'total_students': total_students,
+        'total_fee_collected': total_fee_collected,
+        'total_fee_pending': total_fee_pending,
+        'total_classes': total_classes
+    }
+    return render(request, 'students/index.html', context)
 
 class StudentList(ListView):
     '''List all students'''
