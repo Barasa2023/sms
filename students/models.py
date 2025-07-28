@@ -15,14 +15,20 @@ class Student(models.Model):
 
     def total_fees(self):
         """Calculate total fees for the student."""
+        if not self.pk:
+            return 0
         return sum(fee.amount for fee in self.fee_type.all())
 
     def total_fees_paid(self):
         """Calculate total fees paid by the student."""
+        if not self.pk:
+            return 0
         return sum(payment.amount for payment in self.payment_set.all())
     
     def balance(self):
         """Calculate the balance of fees for the student."""
+        if not self.pk:
+            return 0
         total_paid = self.total_fees_paid()
         total_fees = sum(fee.amount for fee in self.fee_type.all())
         return total_fees - total_paid
