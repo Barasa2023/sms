@@ -5,6 +5,8 @@ class User(AbstractUser):
     '''
     Manage User creation
     '''
+    first_name = models.CharField(max_length=30, blank=True)
+    last_name = models.CharField(max_length=30, blank=True)
     email = models.EmailField(unique=True)
     username = None
     is_teacher = models.BooleanField(default=False)
