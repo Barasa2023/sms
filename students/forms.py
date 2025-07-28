@@ -29,6 +29,15 @@ class StudentCreationForm(ModelForm):
 
 class StudentEditForm(ModelForm):
     '''Student edit form'''
+    first_name = forms.CharField(max_length=50)
+    last_name = forms.CharField(max_length=50)
+    email = forms.EmailField(required=True)
+    fee_type = forms.ModelMultipleChoiceField(
+        queryset=FeeType.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
+        label="Fee Categories"
+    )
     class Meta:
         model = Student
         fields = ['first_name', 'last_name', 'email', 'adm_no', 'grade', 'fee_type']

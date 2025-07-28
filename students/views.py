@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth import get_user_model
 from .models import Student
-from .forms import StudentCreationForm
+from .forms import StudentCreationForm, StudentEditForm
 
 User = get_user_model()
 
