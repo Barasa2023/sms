@@ -20,6 +20,7 @@ class IndexView(ListView):
 class CreateTeacherView(CreateView):
     model = Teacher
     form_class = TeacherCreationForm
+    template_name = 'staff/create_teacher.html'
     success_url = reverse_lazy('staff:index')
 
     def form_valid(self, form):
