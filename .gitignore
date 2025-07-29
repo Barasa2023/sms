@@ -1,24 +1,36 @@
-
-# Python cache
+# Python cache/compiled files
+*.pyc
+*.pyo
+*.pyd
 __pycache__/
-*.py[cod]
+*.so
 
-# Virtual environment
-venv/
-env/
+# Django logs & local settings
+*.log
+local_settings.py
 
-# Django-specific
-*.sqlite3
+# SQLite database
 db.sqlite3
-media/
-staticfiles/
+db.sqlite3-journal
 
-# VS Code
-.vscode/
-
-
-# Environment variables
+# Virtual environments
 .env
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
-# Migrations (optional)
-**/migrations/
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Static & media (collected/static/generated content)
+staticfiles/
+media/
+
+# Migrations (ignored since you’re working solo)
+*/migrations/
