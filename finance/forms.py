@@ -14,6 +14,13 @@ class FeePaymentForm(ModelForm):
     class Meta:
         model = Payment
         fields = ['student', 'amount', 'fee', 'payment_method', 'receipt_number']
+        widgets = {
+            'student': forms.TextInput(attrs = {'class': 'form-control', 'placeholder': 'Select Student'}),
+            'amount': forms.NumberInput(attrs = {'class': 'form-control', 'placeholder': 'Amount Paid'}),
+            'fee': forms.SelectMultiple(attrs = {'class': 'form-control', 'placeholder': 'Fee Category'}),
+            'payment_method': forms.TextInput(attrs = {'class': 'form-control', 'placeholder': 'Payment Method'}),
+            'receipt_number': forms.TextInput(attrs = {'class': 'form-control', 'placeholder': 'Receipt Number'})
+        }
 
 class FeeUpdateForm(ModelForm):
     class Meta:

@@ -82,3 +82,8 @@ class StudentUpdate(UpdateView):
     pk_url_kwarg = 'pk'
     template_name = 'students/student_edit.html'
     success_url = '/students/'
+
+class StudentDetail(DetailView):
+    model = Student
+    template_name = 'students/student_detail.html'
+    context_object_name = 'student'
