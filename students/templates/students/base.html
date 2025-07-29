@@ -30,7 +30,7 @@
         <!-- 🔐 Auth links if needed -->
         {% if user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="#">{{ user.username }}</a>
+          <a class="nav-link" href="#">Welcome, {{ user.username }}</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Logout</a>
