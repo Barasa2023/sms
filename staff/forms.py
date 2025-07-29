@@ -7,11 +7,11 @@ User = get_user_model()
 
 class TeacherCreationForm(ModelForm):
     '''Form for creating a new teacher'''
-    first_name = forms.CharField(max_length=30)
-    last_name = forms.CharField(max_length=30)
-    email = forms.EmailField(required=True)
-    password = forms.CharField(widget=forms.PasswordInput)
-    #Id_no = forms.CharField(max_length=50)
+    # first_name = forms.CharField(max_length=30)
+    # last_name = forms.CharField(max_length=30)
+    # email = forms.EmailField(required=True)
+    # password = forms.CharField(widget=forms.PasswordInput)
+    # #Id_no = forms.CharField(max_length=50)
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -21,12 +21,15 @@ class TeacherCreationForm(ModelForm):
         
     class Meta:
         model = Teacher
-        fields = ['first_name', 'last_name', 'email', 'phone', 'Id_no']
-        widgets = [
-            ('user', forms.HiddenInput()),
-           ('phone', forms.TextInput(attrs={'placeholder': 'Enter phone number'})),
-           ('Id_no', forms.TextInput(attrs={'placeholder': 'Enter ID number'})),
-        ]
+        fields = ['first_name', 'last_name', 'email', 'phone', 'TSC', 'password']
+        widgets = {
+            'first_name':forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name':forms.TextInput(attrs={'class': 'form-control'}),
+            'email':forms.EmailInput(attrs={'class': 'form-control'}),
+            'phone':forms.TextInput(attrs={'class': 'form-control'}),
+            'TSC':forms.NumberInput(attrs={'class': 'form-control'}),
+            'password':forms.PasswordInput(attrs={'class': 'form-control'}),
+        }
 
     # def __init__(self, *args, **kwargs):
     #     super().__init__(*args, **kwargs)
