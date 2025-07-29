@@ -11,4 +11,4 @@ class Teacher(models.Model):
     hire_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.user.first_name} {self.user.last_name} - {self.Id_no}"
+        return f"{self.user.first_name} {self.user.last_name}"

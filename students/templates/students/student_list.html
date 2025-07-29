@@ -2,8 +2,22 @@
 {% extends "./base.html" %}
 {% block content %}
 <div class="container mt-4">
-    <h2 class="mb-4">Student List</h2>
     <div class="row">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0">Students List</h2>
+            <a href="{% url 'students:add_student' %}" class="btn btn-primary">
+                <i class="bi bi-plus-circle me-1">Admit New Student</i> 
+            </a>
+    </div>
+      <form method="get" class="mb-4">
+    <div class="input-group">
+      <input type="text" name="q" class="form-control" placeholder="Search by name, admission number..."
+             value="{{ request.GET.q }}">
+      <button class="btn btn-outline-secondary" type="submit">
+        <i class="bi bi-search"></i> Search
+      </button>
+    </div>
+  </form>
         {% for student in students %}
         <div class="col-md-6 col-lg-4 mb-4">
             <div class="card shadow rounded-3">
@@ -27,6 +41,34 @@
         {% endfor %}
     </div>
 </div>
+
+  <!-- Pagination -->
+  {% if is_paginated %}
+  <nav class="mt-4">
+    <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+      </li>
+      {% endif %}
+      
+      {% for num in paginator.page_range %}
+        {% if page_obj.number == num %}
+        <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+        {% elif num > page_obj.number|add:-2 and num < page_obj.number|add:2 %}
+        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+  {% endif %}
+
 {% endblock %}
 
 

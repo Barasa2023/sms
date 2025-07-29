@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db.models import Q
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from finance.models import Payment, FeeType
 from students.models import Student
@@ -6,7 +7,7 @@ from .forms import FeePaymentForm, FeeTypeForm, FeeUpdateForm
 
 #from finance.models import Fee
 from finance.models import FeeType
-from finance.forms import FeeTypeForm
+from finance.forms import FeeTypeForm, FeePaymentForm, FeeUpdateForm, CreateFeeForm
 
 # Create your views here.
 class FeeListView(ListView):
@@ -21,7 +22,7 @@ class FeeListView(ListView):
 class CreateFeeView(CreateView):
     '''Create a new fee'''
     model = FeeType
-    form_class = FeeTypeForm
+    form_class = CreateFeeForm
     template_name = 'finance/add_fee.html'
     success_url = '/finance/'  # Redirect to fee list after creation
 
@@ -64,7 +65,22 @@ class FeePaymentListView(ListView):
     context_object_name = 'payments'
 
     def get_queryset(self):
-        return Payment.objects.select_related('student').all()
+        queryset =  Payment.objects.select_related('student').all()
+        query = self.request.GET.get('q')
+        method = self.request.GET.get('method')
+
+        if query:
+            queryset  = queryset.filter(
+                Q(student__user__first_name__icontains=query) |
+                Q(student__user__last_name__icontains=query) |
+                Q(receipt_number__icontains=query) |
+                Q(payment_method__icontains=query)
+            )
+
+        if method:
+            queryset = queryset.filter(payment_method__iexact=method)
+        
+        return queryset
 
 class FeeUpdateView(UpdateView):
     '''Update an existing fee category'''

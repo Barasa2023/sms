@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth import get_user_model
-from django.db.models import Sum
+from django.db.models import Sum, Q
 from .models import Student
 from .forms import StudentCreationForm, StudentEditForm
 from finance.models import Payment
@@ -32,7 +32,16 @@ class StudentList(ListView):
     context_object_name = 'students'
 
     def get_queryset(self):
-        return Student.objects.select_related('user').all()
+        queryset =  Student.objects.select_related('user').all()
+        query = self.request.GET.get('q')
+
+        if query:
+            queryset = queryset.filter(
+                Q(user__first_name__icontains=query) |
+                Q(user__last_name__icontains=query) |
+                Q(adm_no__icontains=query) 
+            )
+        return queryset
 
 class StudentCreate(CreateView):
     model = Student

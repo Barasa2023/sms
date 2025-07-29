@@ -18,6 +18,14 @@ class ClassRoom(models.Model):
     def total_students(self):
         """Calculate total students in the classroom."""
         return self.student_set.count()
+    
+    def total_fees_collected(self):
+        """Calculate total fees collected in the classroom."""
+        return sum(student.total_fees_paid() for student in self.student_set.all())
+    
+    def fees_pending(self):
+        """Calculate total fees pending in the classroom."""
+        return sum(student.balance() for student in self.student_set.all())
 
     def __str__(self):
         return self.name

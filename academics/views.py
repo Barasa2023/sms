@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
-from .forms import ClassRoomForm, SubjectForm
+from .forms import ClassRoomForm, SubjectForm, ClassCreationForm
 from .models import ClassRoom, Subject
 
 def IndexView(request):
@@ -17,7 +17,7 @@ class ClassRoomListView(ListView):
     
 class ClassRoomCreateView(CreateView):
     model = ClassRoom
-    form_class = ClassRoomForm
+    form_class = ClassCreationForm
     template_name = 'academics/classroom_form.html'
     success_url = '/academics/classrooms/'  # Redirect to classroom list after creation
 
