@@ -86,11 +86,9 @@ class FeeUpdateView(UpdateView):
     '''Update an existing fee category'''
     model = FeeType
     form_class = FeeUpdateForm
+    pk_url_kwarg = 'pk'
     template_name = 'finance/edit_fee.html'
     success_url = '/payments/'
-
-    def get_object(self, queryset=None):
-        return Payment.objects.get(pk=self.kwargs['pk'])
     
 class FeeDeleteView(DeleteView):
     '''Delete an existing fee category'''
