@@ -4,4 +4,4 @@ from .models import Teacher
 # Register your models here.
 @admin.register(Teacher)
 class TeacherAdmin(admin.ModelAdmin):
-    list_display = ['user', 'Id_no', 'phone']
+    list_display = ['user', 'TSC', 'phone']
