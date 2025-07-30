@@ -63,6 +63,7 @@ class FeePaymentListView(ListView):
     model = Payment
     template_name = 'finance/fee_payment_list.html'
     context_object_name = 'payments'
+    paginate_by = 10
 
     def get_queryset(self):
         queryset =  Payment.objects.select_related('student').all()

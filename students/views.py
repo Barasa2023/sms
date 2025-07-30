@@ -30,6 +30,7 @@ class StudentList(ListView):
     model = Student
     template_name = 'students/student_list.html'
     context_object_name = 'students'
+    paginate_by = 9  # Number of students per page
 
     def get_queryset(self):
         queryset =  Student.objects.select_related('user').all()
