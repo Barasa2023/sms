@@ -27,9 +27,10 @@
         <tr>
           <th>#</th>
           <th>Student</th>
+          <th>Class</th>
           <th>Amount</th>
           <th>Method</th>
-          <th>Receipt</th>
+          <th>Receipt No</th>
           <th>Date</th>
           <th>Actions</th>
         </tr>
@@ -39,6 +40,7 @@
         <tr>
           <td>{{ forloop.counter }}</td>
           <td>{{ payment.student.user.get_full_name }}</td>
+          <td>{{  payment.student.user.get_class  }}</td>
           <td>Ksh {{ payment.amount }}</td>
           <td>{{ payment.payment_method }}</td>
           <td>{{ payment.receipt_number }}</td>
