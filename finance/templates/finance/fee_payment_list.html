@@ -40,7 +40,7 @@
         <tr>
           <td>{{ forloop.counter }}</td>
           <td>{{ payment.student.user.get_full_name }}</td>
-          <td>{{  payment.student.classroom.name }}</td>
+          <td>{{  payment.student.grade.name }}{{ payment.student.grade.stream }}</td>
           <td>Ksh {{ payment.amount }}</td>
           <td>{{ payment.payment_method }}</td>
           <td>{{ payment.receipt_number }}</td>

@@ -75,6 +75,7 @@ class FeePaymentListView(ListView):
                 Q(student__user__first_name__icontains=query) |
                 Q(student__user__last_name__icontains=query) |
                 Q(receipt_number__icontains=query) |
+                Q(student__adm_no__icontains=query) |
                 Q(payment_method__icontains=query)
             )
 
